@@ -55,7 +55,7 @@ const quadraticPolynomial = (eq) => {
   if (delta === 0) {
     let root1 = (-b / 2 * a);
     
-    if (root1 === -0) root1 = Math.abs(root1);
+    if (root1 == -0) root1 = Math.abs(root1);
 
     return [root1];
   }
@@ -64,8 +64,8 @@ const quadraticPolynomial = (eq) => {
     let root1 = (-b - Math.sqrt(delta)) / (2 * a);
     let root2 = (-b + Math.sqrt(delta)) / (2 * a);
     
-    if (root1 === -0) root1 = Math.abs(root1);
-    if (root2 === -0) root2 = Math.abs(root2);
+    if (root1 == -0) root1 = Math.abs(root1);
+    if (root2 == -0) root2 = Math.abs(root2);
 
     return [root1, root2];
   }
