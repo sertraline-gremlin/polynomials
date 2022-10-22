@@ -30,7 +30,7 @@ const quadraticPolynomial = (eq) => {
   if (isNaN(a)) return SyntaxError("Syntax error");
 
   let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
-
+  
   for (let i = 0; i < b.length; i++) {
     if (b[i] === "x") b[i] = "1x";
     if (b[i] === "-x") b[i] = "-1x";
@@ -50,9 +50,10 @@ const quadraticPolynomial = (eq) => {
     .reduce((pV, cV) => pV + cV, 0);
 
   let delta = b ** 2 - 4 * a * c;
+
   if (delta < 0) return [];
   if (delta === 0) {
-    let root1 = (-b / 2) * a;
+    let root1 = (-b / 2 * a);
 
     if (root1 === -0) root1 = Math.abs(root1);
 
