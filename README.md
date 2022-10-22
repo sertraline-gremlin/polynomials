@@ -1,2 +1,2 @@
 # polynomials
-solve quadratic polynomial
+find roots of quadratic polynomial
