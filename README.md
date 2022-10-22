@@ -1,1 +1,2 @@
 # polynomials
+solve quadratic polynomial
