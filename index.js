@@ -3,8 +3,8 @@ const { stdin: input, stdout: output } = require('process');
 
 const quadraticPolynomial = (eq) => {
     eq = eq.toLowerCase()
-    if (!/^[0-9^x+-\s]+$/i.test(eq) || /^[\s]+$/.test(eq) || !eq) { //syntax check
-        return SyntaxError('Funkcja nie może być pusta lub zawierać symboli poza 0-9^x+-.');
+    if (!/^[0-9^x+-\s]+$/i.test(eq) || /^[\s]+$/.test(eq) || !eq) {
+        return SyntaxError('Input cannot be empty or include characters beyond 0-9^x+-');
     }
 
     eq = eq.replace(/\s/g, '').replace(/-/g, '+-').split(/[+]/);
@@ -15,8 +15,8 @@ const quadraticPolynomial = (eq) => {
         if (a[i] === '-x^2') a[i] = '-1x^2';
     };
     a = a.reduce((pV, cV) => pV + cV, 0).toString().split('x^2').filter(a => a).map(Number).reduce((pV, cV) => pV + cV, 0);
-    if (a === 0) return SyntaxError('Współczynnik a nie może być równy 0');
-    if (isNaN(a)) return SyntaxError('Błąd składni');
+    if (a === 0) return SyntaxError('Coefficient \'a\' cannot be equal to 0');
+    if (isNaN(a)) return SyntaxError('Syntax error');
 
     let b = eq.filter(eq => eq.includes('x') && !eq.includes('x^'));
     for (let i = 0; i < b.length; i++) {
@@ -50,7 +50,7 @@ const quadraticPolynomial = (eq) => {
 
 const rl = readline.createInterface({ input, output });
 var recursiveAsyncReadline = function () {
-    rl.question('Wprowadź wielomian drugiego stopnia gdzie zmienną jest x (wpisz q aby wyjść) ', (eq) => {
+    rl.question('Enter quadratic polynomial with the variables being only x (q to quit) ', (eq) => {
         if (eq == 'q') return rl.close();
         console.log(quadraticPolynomial(eq));
         recursiveAsyncReadline();
