@@ -14,7 +14,8 @@ const quadraticPolynomial = (eq) => {
 	    if (a[i] === 'x^2') a[i] = '1x^2';
         if (a[i] === '-x^2') a[i] = '-1x^2';
     };
-    a = a.reduce((pV, cV) => pV + cV, 0).toString().split('x^2').filter(a => a).map(Number).reduce((pV, cV) => pV + cV, 0);
+    a = a.reduce((pV, cV) => pV + cV, '').toString().split('x^2').filter(a => a).map(Number).reduce((pV, cV) => pV + cV, '');
+
     if (a === 0) return SyntaxError('Coefficient \'a\' cannot be equal to 0');
     if (isNaN(a)) return SyntaxError('Syntax error');
 
@@ -23,7 +24,7 @@ const quadraticPolynomial = (eq) => {
 	    if (b[i] === 'x') b[i] = '1x';
         if (b[i] === '-x') b[i] = '-1x';
     };
-    b = b.reduce((pV, cV) => pV + cV, 0).toString().split('x').filter(b => b).map(Number).reduce((pV, cV) => pV + cV, 0);
+    b = b.reduce((pV, cV) => pV + cV, '').toString().split('x').filter(b => b).map(Number).reduce((pV, cV) => pV + cV, '');
 
     let c = eq.filter(eq => (!eq.includes('x') && !/^[-]+$/.test(eq))).map(Number).reduce((pV, cV) => pV + cV, 0);
 
@@ -37,14 +38,16 @@ const quadraticPolynomial = (eq) => {
         return [root1];
     };   
     if (delta > 0) {
-        let root1 = (-b-Math.sqrt(delta))/2*a;
-        let root2 = (-b+Math.sqrt(delta))/2*a;
+        let root1 = (-b-Math.sqrt(delta))/(2*a);
+        let root2 = (-b+Math.sqrt(delta))/(2*a);
 
         if (root1 === -0) root1 = Math.abs(root1);
         if (root2 === -0) root2 = Math.abs(root1);
 
         return [root1, root2];
     };
+
+    
 
 };
 
