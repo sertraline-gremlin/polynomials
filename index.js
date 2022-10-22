@@ -50,7 +50,7 @@ const quadraticPolynomial = (eq) => {
 
 const rl = readline.createInterface({ input, output });
 var recursiveAsyncReadline = function () {
-    rl.question('Enter quadratic polynomial with the variables being only x (q to quit) ', (eq) => {
+    rl.question('Enter quadratic polynomial to get it\'s roots, the only variable must be an x (q to quit) ', (eq) => {
         if (eq == 'q') return rl.close();
         console.log(quadraticPolynomial(eq));
         recursiveAsyncReadline();
