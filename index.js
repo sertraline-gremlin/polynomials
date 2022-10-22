@@ -43,7 +43,7 @@ const quadraticPolynomial = (eq) => {
      .filter((b) => b)
      .map(Number)
      .reduce((pV, cV) => pV + cV, 0);
-    console.log(b)
+
   let c = eq
     .filter((eq) => !eq.includes("x") && !/^[-]+$/.test(eq))
     .map(Number)
