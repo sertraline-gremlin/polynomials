@@ -5,7 +5,7 @@ const quadraticPolynomial = (eq) => {
   eq = eq.toLowerCase();
   if (!/^[0-9^x+-\s.]+$/i.test(eq) || /^[\s]+$/.test(eq) || !eq) {
     return SyntaxError(
-      "Input cannot be empty or include characters beyond 0-9^x+-"
+      "Input cannot be empty or include characters beyond 0-9^x+-."
     );
   }
 
