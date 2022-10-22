@@ -16,31 +16,34 @@ const quadraticPolynomial = (eq) => {
     if (a[i] === "x^2") a[i] = "1x^2";
     if (a[i] === "-x^2") a[i] = "-1x^2";
   }
+  
   a = a
     .reduce((pV, cV) => pV + cV, "")
     .toString()
     .split("x^2")
     .filter((a) => a)
     .map(Number)
-    .reduce((pV, cV) => pV + cV, "");
+    .reduce((pV, cV) => pV + cV, 0);
 
   if (a === 0 || a === "")
     return SyntaxError("Coefficient 'a' cannot be equal to 0");
   if (isNaN(a)) return SyntaxError("Syntax error");
 
   let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
+
   for (let i = 0; i < b.length; i++) {
     if (b[i] === "x") b[i] = "1x";
     if (b[i] === "-x") b[i] = "-1x";
   }
+  
   b = b
     .reduce((pV, cV) => pV + cV, "")
-    .toString()
-    .split("x")
-    .filter((b) => b)
-    .map(Number)
-    .reduce((pV, cV) => pV + cV, "");
-
+     .toString()
+     .split("x")
+     .filter((b) => b)
+     .map(Number)
+     .reduce((pV, cV) => pV + cV, 0);
+    console.log(b)
   let c = eq
     .filter((eq) => !eq.includes("x") && !/^[-]+$/.test(eq))
     .map(Number)
