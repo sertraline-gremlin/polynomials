@@ -13,10 +13,14 @@ const quadraticPolynomial = (eq) => {
 
   let a = eq.filter((eq) => eq.includes("x^"));
   for (let i = 0; i < a.length; i++) {
-    if (a[i] === "x^2") a[i] = "1x^2";
-    if (a[i] === "-x^2") a[i] = "-1x^2";
+    if (a[i] === "x^2") {
+      a[i] = "1x^2";
+    }
+    if (a[i] === "-x^2") {
+      a[i] = "-1x^2";
+    }
   }
-  
+
   a = a
     .reduce((pV, cV) => pV + cV, "")
     .toString()
@@ -25,17 +29,24 @@ const quadraticPolynomial = (eq) => {
     .map(Number)
     .reduce((pV, cV) => pV + cV, 0);
 
-  if (a === 0 || a === "")
+  if (a === 0 || a === "") {
     return SyntaxError("Coefficient 'a' cannot be equal to 0");
-  if (isNaN(a)) return SyntaxError("Syntax error");
+  }
+  if (isNaN(a)) {
+    return SyntaxError('Syntax error');
+  }
 
   let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
-  
+
   for (let i = 0; i < b.length; i++) {
-    if (b[i] === "x") b[i] = "1x";
-    if (b[i] === "-x") b[i] = "-1x";
+    if (b[i] === "x") {
+      b[i] = "1x";
+    }
+    if (b[i] === "-x") {
+      b[i] = "-1x";
+    }
   }
-  
+
   b = b
     .reduce((pV, cV) => pV + cV, "")
      .toString()
