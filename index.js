@@ -1,5 +1,6 @@
 const readline = require("readline");
 const { stdin: input, stdout: output } = require("process");
+const rl = readline.createInterface({ input, output });
 
 const quadraticPolynomial = (eq) => {
   eq = eq.toLowerCase();
@@ -16,6 +17,11 @@ const quadraticPolynomial = (eq) => {
     .split(/[+]/);
 
   let a = eq.filter((eq) => eq.includes("x^"));
+  let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
+  const c = eq
+    .filter((eq) => !eq.includes("x") && !/^[-]+$/.test(eq))
+    .map(Number)
+    .reduce((pV, cV) => pV + cV, 0);
 
   for (let i = 0; i < a.length; i++) {
     if (a[i] === "x^2") {
@@ -23,6 +29,14 @@ const quadraticPolynomial = (eq) => {
     }
     if (a[i] === "-x^2") {
       a[i] = "-1x^2";
+    }
+  }
+  for (let i = 0; i < b.length; i++) {
+    if (b[i] === "x") {
+      b[i] = "1x";
+    }
+    if (b[i] === "-x") {
+      b[i] = "-1x";
     }
   }
 
@@ -41,27 +55,11 @@ const quadraticPolynomial = (eq) => {
     return SyntaxError("Syntax error");
   }
 
-  let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
-
-  for (let i = 0; i < b.length; i++) {
-    if (b[i] === "x") {
-      b[i] = "1x";
-    }
-    if (b[i] === "-x") {
-      b[i] = "-1x";
-    }
-  }
-
   b = b
     .reduce((pV, cV) => pV + cV, "")
-     .toString()
-     .split("x")
-     .filter((b) => b)
-     .map(Number)
-     .reduce((pV, cV) => pV + cV, 0);
-
-  const c = eq
-    .filter((eq) => !eq.includes("x") && !/^[-]+$/.test(eq))
+    .toString()
+    .split("x")
+    .filter((b) => b)
     .map(Number)
     .reduce((pV, cV) => pV + cV, 0);
 
@@ -94,7 +92,6 @@ const quadraticPolynomial = (eq) => {
   }
 };
 
-const rl = readline.createInterface({ input, output });
 const recursiveAsyncReadline = function () {
   rl.question(
     "Enter quadratic polynomial to find it's roots, the only variable must be an x (q to quit) ",
