@@ -40,9 +40,11 @@ const quadraticPolynomial = (eq) => {
 
   for (let i = 0; i < b.length; i++) {
     if (b[i] === "x") {
+
       b[i] = "1x";
     }
     if (b[i] === "-x") {
+
       b[i] = "-1x";
     }
   }
@@ -55,35 +57,47 @@ const quadraticPolynomial = (eq) => {
      .map(Number)
      .reduce((pV, cV) => pV + cV, 0);
 
-  let c = eq
+  const c = eq
     .filter((eq) => !eq.includes("x") && !/^[-]+$/.test(eq))
     .map(Number)
     .reduce((pV, cV) => pV + cV, 0);
 
-  let delta = b ** 2 - 4 * a * c;
+  const delta = b ** 2 - 4 * a * c;
 
-  if (delta < 0) return [];
+  if (delta < 0) {
+
+    return [];
+  }
+
   if (delta === 0) {
+
     let root1 = (-b / 2 * a);
-    
-    if (root1 == -0) root1 = Math.abs(root1);
+
+    if (root1 == -0) {
+      root1 = Math.abs(root1);
+    }
 
     return [root1];
   }
+
   if (delta > 0) {
-    
+
     let root1 = (-b - Math.sqrt(delta)) / (2 * a);
     let root2 = (-b + Math.sqrt(delta)) / (2 * a);
-    
-    if (root1 == -0) root1 = Math.abs(root1);
-    if (root2 == -0) root2 = Math.abs(root2);
+
+    if (root1 == -0) {
+      root1 = Math.abs(root1);
+    }
+    if (root2 == -0) {
+      root2 = Math.abs(root2);
+    }
 
     return [root1, root2];
   }
 };
 
 const rl = readline.createInterface({ input, output });
-var recursiveAsyncReadline = function () {
+const recursiveAsyncReadline = function () {
   rl.question(
     "Enter quadratic polynomial to find it's roots, the only variable must be an x (q to quit) ",
     (eq) => {
