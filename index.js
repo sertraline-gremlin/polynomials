@@ -3,15 +3,20 @@ const { stdin: input, stdout: output } = require("process");
 
 const quadraticPolynomial = (eq) => {
   eq = eq.toLowerCase();
+
   if (!/^[0-9^x+-\s.]+$/i.test(eq) || /^[\s]+$/.test(eq) || !eq) {
     return SyntaxError(
       "Input cannot be empty or include characters beyond 0-9^x+-."
     );
   }
 
-  eq = eq.replace(/\s/g, "").replace(/-/g, "+-").split(/[+]/);
+  eq = eq
+    .replace(/\s/g, "")
+    .replace(/-/g, "+-")
+    .split(/[+]/);
 
   let a = eq.filter((eq) => eq.includes("x^"));
+
   for (let i = 0; i < a.length; i++) {
     if (a[i] === "x^2") {
       a[i] = "1x^2";
@@ -33,18 +38,16 @@ const quadraticPolynomial = (eq) => {
     return SyntaxError("Coefficient 'a' cannot be equal to 0");
   }
   if (isNaN(a)) {
-    return SyntaxError('Syntax error');
+    return SyntaxError("Syntax error");
   }
 
   let b = eq.filter((eq) => eq.includes("x") && !eq.includes("x^"));
 
   for (let i = 0; i < b.length; i++) {
     if (b[i] === "x") {
-
       b[i] = "1x";
     }
     if (b[i] === "-x") {
-
       b[i] = "-1x";
     }
   }
@@ -65,12 +68,9 @@ const quadraticPolynomial = (eq) => {
   const delta = b ** 2 - 4 * a * c;
 
   if (delta < 0) {
-
     return [];
   }
-
   if (delta === 0) {
-
     let root1 = (-b / 2 * a);
 
     if (root1 == -0) {
@@ -79,9 +79,7 @@ const quadraticPolynomial = (eq) => {
 
     return [root1];
   }
-
   if (delta > 0) {
-
     let root1 = (-b - Math.sqrt(delta)) / (2 * a);
     let root2 = (-b + Math.sqrt(delta)) / (2 * a);
 
